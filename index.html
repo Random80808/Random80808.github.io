@@ -587,7 +587,7 @@
         ]
 
         const $ = (s) => document.querySelector(s)let splashIndex = 0;
-const updateSplash = () => $('#popupBody').textContent = splashes[splashIndex++ % splashes.length];
+const updateSplash = () => $('popupBody').textContent = splashes[splashIndex++ % splashes.length];
 updateSplash(); setInterval(updateSplash, 5000);
 
         const popupSections = {
