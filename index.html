@@ -589,41 +589,46 @@
         const $ = (s) => document.querySelector(s)
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Function to update quote
   const updateQuote = () => {
-    const old = $('#popupBody .splash-quote');
+    const popupEl = $('#popupBody');
+    if (!popupEl) return; // If popup isn't open yet, skip
+    
+    const old = popupEl.querySelector('.splash-quote');
     if (old) old.remove();
-    $('#popupBody').insertAdjacentHTML('afterbegin', 
+    
+    popupEl.insertAdjacentHTML('afterbegin', 
       `<p class="splash-quote" style="text-align:center; margin:10px 0; font-style:italic; opacity:0.8">
         ${splashes[Math.floor(Math.random() * splashes.length)]}
       </p>`
     );
   }
   
-  updateQuote(); // Run once immediately
-  setInterval(updateQuote, 5000); // Then every 5s
+  updateQuote();
+  setInterval(updateQuote, 5000);
 });
 
-const popupSections = {
-        const popupSections = {
-            games: {
-                title: "YZY games",
-                subtitle: "launches in a clean popup and unloads when you leave"
-            },
-            movies: {
-                title: "YZY movies",
-                subtitle: "same chrome, same motion, separate runtime"
-            },
-            settings: {
-                title: "YZY settings",
-                subtitle: "theme selector"
-            }
-        }
+const popupSections = { // Fixed - removed duplicate
+  games: {
+    title: "YZY games",
+    subtitle: "launches in a clean popup and unloads when you leave"
+  },
+  movies: {
+    title: "YZY movies", 
+    subtitle: "same chrome, same runtime"
+  },
+  settings: {
+    title: "YZY settings",
+    subtitle: "theme selector"
+  }
+}
 
-        const popupState = {
-            activeSection: null,
-            cleanup: null,
-            activeGame: null
+const popupState = {
+  activeSection: null,
+  cleanup: null,
+  activeGame: null
+}
+
+        
         }
 
         const GAME_ZONES_URL = "https://cdn.jsdelivr.net/gh/freebuisness/assets@latest/zones.json"
