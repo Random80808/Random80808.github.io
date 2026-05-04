@@ -586,16 +586,25 @@
             "aspire to inspire, before we expire- Nerd"
         ]
 
-        const $ = (s) => document.querySelector(s)let splashIndex = 0;
-setInterval(() => {
-  const old = $('#popupBody .splash-quote');
-  if (old) old.remove();
-  $('#popupBody').insertAdjacentHTML('afterbegin', `<p class="splash-quote" style="text-align:center; margin-bottom:10px; font-style:italic">${splashes[Math.floor(Math.random() * splashes.length)]}</p>`);
-}, 5000);
+        const $ = (s) => document.querySelector(s)
 
-// Run once immediately so you don't wait 5s
-$('#popupBody').insertAdjacentHTML('afterbegin', `<p class="splash-quote" style="text-align:center; margin-bottom:10px; font-style:italic">${splashes[Math.floor(Math.random() * splashes.length)]}</p>`);
+document.addEventListener('DOMContentLoaded', () => {
+  // Function to update quote
+  const updateQuote = () => {
+    const old = $('#popupBody .splash-quote');
+    if (old) old.remove();
+    $('#popupBody').insertAdjacentHTML('afterbegin', 
+      `<p class="splash-quote" style="text-align:center; margin:10px 0; font-style:italic; opacity:0.8">
+        ${splashes[Math.floor(Math.random() * splashes.length)]}
+      </p>`
+    );
+  }
+  
+  updateQuote(); // Run once immediately
+  setInterval(updateQuote, 5000); // Then every 5s
+});
 
+const popupSections = {
         const popupSections = {
             games: {
                 title: "YZY games",
